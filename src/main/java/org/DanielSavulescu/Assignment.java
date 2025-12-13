@@ -11,6 +11,13 @@ public class Assignment {
 
     private static int nextId = 1;
 
+    public Assignment(String assignmentName) {
+        this.assignmentId = String.format("%d", nextId++);
+        this.assignmentName = assignmentName;
+        this.weight = weight;
+        this.scores = scores;
+    }
+
     /**
      * calculates the average of all the assignments
      * @return the average of all the assignments
@@ -20,14 +27,14 @@ public class Assignment {
             return 0.0;
         }
 
-        double sum = 0;
+        double sum = 0.0;
         int count = 0;
         for (Integer score : scores) {
             sum += score;
             count++;
         }
 
-        return sum / count;
+        return (sum / count);
     }
 
     /**
