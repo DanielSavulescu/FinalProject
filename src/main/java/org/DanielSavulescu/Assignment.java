@@ -1,11 +1,19 @@
 package org.DanielSavulescu;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 import java.util.Random;
 
+@EqualsAndHashCode
+@Getter
 public class Assignment {
     private String assignmentId;
+    @Setter
     private String assignmentName;
+    @Setter
     private double weight;
     private List<Integer> scores;
 
