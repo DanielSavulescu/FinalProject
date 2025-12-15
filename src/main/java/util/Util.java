@@ -15,8 +15,20 @@ public class Util {
         String[] words = str.split(" ");
         String strToTitleCase = "";
 
-        for (String w : words) {
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            if (!word.isEmpty()) {
+                String firstChar = word.substring(0, 1).toUpperCase();
+                String restOfString = "";
+                if (word.length() > 1) {
+                    restOfString += word.substring(1).toLowerCase();
+                }
+                strToTitleCase += firstChar + restOfString;
+            }
 
+            if (i < words.length - 1) {
+                strToTitleCase += " ";
+            }
         }
 
         return strToTitleCase;
