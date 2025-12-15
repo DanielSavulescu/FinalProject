@@ -44,7 +44,7 @@ public class Address {
             return false;
         }
 
-        for (int i = 1; i < 6; i++) {
+        for (int i = 0; i < 6; i++) {
             char c = postalCode.charAt(i);
 
             if (i % 2 == 0) {
