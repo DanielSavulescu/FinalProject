@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -19,11 +20,11 @@ public class Assignment {
 
     private static int nextId = 1;
 
-    public Assignment(String assignmentName) {
+    public Assignment(String assignmentName, double weight) {
         this.assignmentId = String.format("%d", nextId++);
         this.assignmentName = assignmentName;
         this.weight = weight;
-        this.scores = scores;
+        this.scores = new ArrayList<>();
     }
 
     /**
@@ -36,13 +37,11 @@ public class Assignment {
         }
 
         double sum = 0.0;
-        int count = 0;
         for (Integer score : scores) {
             sum += score;
-            count++;
         }
 
-        return (sum / count);
+        return (sum / scores.size());
     }
 
     /**
