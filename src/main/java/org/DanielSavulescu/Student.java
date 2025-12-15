@@ -3,6 +3,7 @@ package org.DanielSavulescu;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class Student {
 
     public Student(String studentName, Gender gender, Address address, Department department) {
         this.studentId = String.format("S%06d", nextId++);
-        this.studentName = studentName;
+        this.studentName = Util.toTitleCase(studentName);
         this.gender = gender;
         this.address = address;
         this.department = department;
@@ -34,6 +35,7 @@ public class Student {
      * adds the student to the course's registeredStudents list
      * appends a null for the scores of each assignment of the course
      * if the course is already registered, nothing is added
+     *
      * @param course the course to be registered
      * @return true if the course has been registered, false if it has not/is already registered
      */
@@ -56,6 +58,7 @@ public class Student {
      * drops a course, removes the course from the student's registeredCourses list,
      * removes the student from the course's registeredStudents list
      * if the course is not registered, nothing is removed
+     *
      * @param course the course to be dropped
      * @return true if the course has been dropped, false if it has not/is already dropped
      */
@@ -72,10 +75,13 @@ public class Student {
 
     /**
      * converts a student to a simple string with only the studentId, the studentName, and departmentName
+     *
      * @return the simplifiedString
      */
     public String toSimplifiedString() {
-        return studentId + " - " + studentName + " - " + department.getDepartmentName();
+        return studentId + " - " +
+                studentName + " - " +
+                department.getDepartmentName();
     }
 
     @Override
@@ -92,16 +98,16 @@ public class Student {
         } else {
             for (Course course : registeredCourses) {
                 toStringStudent += " " +
-                course.getCourseId() + " - " +
-                course.getCourseName() + " - " +
-                course.getDepartment().getDepartmentName();
+                        course.getCourseId() + " - " +
+                        Util.toTitleCase(course.getCourseName()) + " - " +
+                        Util.toTitleCase(course.getDepartment().getDepartmentName());
             }
         }
 
         return toStringStudent;
     }
 
-    public enum Gender{
+    public enum Gender {
         FEMALE,
         MALE
     }
